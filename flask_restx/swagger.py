@@ -487,6 +487,16 @@ class Swagger(object):
             for k, v in iteritems(doc[method].get("vendor", {}))
         )
 
+    def summary_for(self, doc, method):
+        """Extract the method summary"""
+        parts = []
+        if method in doc and "summary" in doc[method]:
+            parts.append(doc[method]["summary"])
+        if doc[method]["docstring"]["summary"]:
+            parts.append(doc[method]["docstring"]["summary"])
+
+        return ", ".join(parts).strip()
+
     def description_for(self, doc, method):
         """Extract the description metadata and fallback on the whole docstring"""
         parts = []
