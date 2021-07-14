@@ -450,7 +450,7 @@ class Swagger(object):
     def serialize_operation(self, doc, method):
         operation = {
             "responses": self.responses_for(doc, method) or None,
-            "summary": doc[method]["docstring"]["summary"],
+            "summary": self.summary_for(doc, method) or None,
             "description": self.description_for(doc, method) or None,
             "operationId": self.operation_id_for(doc, method),
             "parameters": self.parameters_for(doc[method]) or None,
